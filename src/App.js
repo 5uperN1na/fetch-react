@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import Header from './layout/Header';
 import 'isomorphic-fetch';
 import 'es6-promise';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,7 +21,7 @@ class App extends Component {
       people: [],
       isFilmsLoaded: false,
       isPeopleLoaded: false,
-   
+
 
     };
 
@@ -28,6 +29,8 @@ class App extends Component {
 
   }
 
+  //method + bind
+  //question:  does it have to be inside the constructor?
   handlePeopleLoad = () => {
     this.setState({
       isFilmsLoaded: false,
@@ -36,7 +39,7 @@ class App extends Component {
 
   }
 
-
+  //method + bind
   handleFilmsLoad = () => {
     this.setState({
       isFilmsLoaded: true,
@@ -44,8 +47,6 @@ class App extends Component {
     });
 
   }
-
-
 
 
 
@@ -78,67 +79,101 @@ class App extends Component {
   }
 
 
-
-
-
-
   render() {
+     
 
     if (this.state.isFilmsLoaded && !this.state.isPeopleLoaded) {
       return (
+        <Fragment>
+        <Header />
         <Container>
+       
+
           <Row className="justify-content-center my-2">
             <Col md={12}>
               <h1 className="text-center text-danger">Films</h1>
               <div>
-                <button onClick={this.handleFilmsLoad}>Get Films!</button>
-                <button onClick={this.handlePeopleLoad}>Get People</button>
+                <Button onClick={this.handleFilmsLoad} variant="outline-secondary" size="sm">Get Films!</Button>
+                <Button onClick={this.handlePeopleLoad} variant="outline-secondary" size="sm">Get People!</Button>
               </div>
 
-           
-            </Col>
-          </Row>
-        </Container>
-      );
 
-    } else if (!this.state.isFilmsLoaded && this.state.isPeopleLoaded) {
-      return (
-        <Container>
-          <Row className="justify-content-center my-2">
-            <Col md={12}>
-              <h1 className="text-center text-danger">People</h1>
-             
-            </Col>
-          </Row>
-        </Container>
-      );
-    } else {
-      return (
-        <Container>
-          <Row className="justify-content-center my-2">
-            <Col md={12}>
-              <h1 className="text-center text-danager">Loading...</h1>
               <div className="card">
                 <ListGroup variant="flush">
-                  {items.map(item => (
+                  {this.state.items.map(item => (
                     <ListGroup.Item key={item.id}>
-                      <b>Title:</b>  {item.title}
+                    
+                      
+                      <Card>
+                        <Card.Body><b>Title:</b>  {item.title}</Card.Body>
+                      </Card>
                       <div><br /></div>
                       <b>Description:</b> {item.description}
                     </ListGroup.Item>
                   ))};
               </ListGroup>
               </div>
+
             </Col>
           </Row>
         </Container>
+        </Fragment>
+      );
+
+    } else if (!this.state.isFilmsLoaded && this.state.isPeopleLoaded) {
+      return (
+        <Fragment>
+          <Header />
+        <Container>
+          <Row className="justify-content-center my-2">
+            <Col md={12}>
+              <h1 className="text-center text-danger">People</h1>
+              <div>
+                <Button onClick={this.handleFilmsLoad} variant="outline-secondary" size="sm">Get Films!</Button>
+                <Button onClick={this.handlePeopleLoad} variant="outline-secondary" size="sm">Get People!</Button>
+              </div>
+
+
+              <div className="card">
+                <ListGroup variant="flush">
+                  {this.state.people.map(peep => (
+                    <ListGroup.Item key={peep.id}>
+                      <b>Name:</b>  {peep.name}
+                      <div><br /></div>
+                      <b>Eye Color:</b> {peep.eye_color}
+                    </ListGroup.Item>
+                  ))};
+              </ListGroup>
+              </div>
+
+            </Col>
+          </Row>
+        </Container>
+        </Fragment>
+      );
+    } else {
+      return (
+         <Fragment>
+          <Header />
+        <Container>
+          <Row className="justify-content-center my-2">
+            <Col md={12}>
+              <h1 className="text-center text-danager">Loading...</h1>
+              <div>
+                <Button onClick={this.handleFilmsLoad} variant="outline-secondary" size="sm">Get Films!</Button>
+                <Button onClick={this.handlePeopleLoad} variant="outline-secondary" size="sm">Get People!</Button>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+        </Fragment>
       );
     }
   }
 
 
-  // var { isLoaded, items } = this.state;
-  // if (!isLoaded) { */}
+ // var { isLoaded, items } = this.state;
+  //{/* if (!isLoaded) { */} */}
   //   return (
 
   //     <>
@@ -184,6 +219,7 @@ class App extends Component {
   // }
 
 
-}
+} 
 
+ 
 export default App;
