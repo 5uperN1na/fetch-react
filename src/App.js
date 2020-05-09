@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Header from './layout/Header';
+import Header from './components/layout/Header';
 import 'isomorphic-fetch';
 import 'es6-promise';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -30,7 +30,6 @@ class App extends Component {
   }
 
   //method + bind
-  //question:  does it have to be inside the constructor?
   handlePeopleLoad = () => {
     this.setState({
       isFilmsLoaded: false,
@@ -89,21 +88,22 @@ class App extends Component {
         <Container>
        
 
-          <Row className="justify-content-center my-2">
+          <Row className="justify-content-left my-2">
             <Col md={12}>
               <h1 className="text-center text-danger">Films</h1>
               <div>
+            
                 <Button onClick={this.handleFilmsLoad} variant="outline-secondary" size="sm">Get Films!</Button>
+                {' '}  {' '}
                 <Button onClick={this.handlePeopleLoad} variant="outline-secondary" size="sm">Get People!</Button>
               </div>
+              <div>{<br />} </div>
 
 
               <div className="card">
                 <ListGroup variant="flush">
                   {this.state.items.map(item => (
                     <ListGroup.Item key={item.id}>
-                    
-                      
                       <Card>
                         <Card.Body><b>Title:</b>  {item.title}</Card.Body>
                       </Card>
@@ -123,24 +123,31 @@ class App extends Component {
     } else if (!this.state.isFilmsLoaded && this.state.isPeopleLoaded) {
       return (
         <Fragment>
-          <Header />
+        <Header /> 
         <Container>
-          <Row className="justify-content-center my-2">
+          <Row className="justify-content-left my-2">
             <Col md={12}>
-              <h1 className="text-center text-danger">People</h1>
-              <div>
-                <Button onClick={this.handleFilmsLoad} variant="outline-secondary" size="sm">Get Films!</Button>
-                <Button onClick={this.handlePeopleLoad} variant="outline-secondary" size="sm">Get People!</Button>
-              </div>
+            <h1 className="text-center text-danger">Films</h1>
+
+            <div>
+            
+            <Button onClick={this.handleFilmsLoad} variant="outline-secondary" size="sm">Get Films!</Button>
+            {' '}  {' '}
+            <Button onClick={this.handlePeopleLoad} variant="outline-secondary" size="sm">Get People!</Button>
+          </div>
+          <div>{<br />} </div>
+            
 
 
               <div className="card">
                 <ListGroup variant="flush">
                   {this.state.people.map(peep => (
                     <ListGroup.Item key={peep.id}>
-                      <b>Name:</b>  {peep.name}
-                      <div><br /></div>
-                      <b>Eye Color:</b> {peep.eye_color}
+                    <Card>
+                      <Card.Body><b>Name:</b>  {peep.name}</Card.Body>
+                    </Card>
+                    <div><br /></div>
+                    <b>Eye Color:</b> {peep.eye_color}
                     </ListGroup.Item>
                   ))};
               </ListGroup>
@@ -154,14 +161,16 @@ class App extends Component {
     } else {
       return (
          <Fragment>
-          <Header />
+         <Header />
         <Container>
-          <Row className="justify-content-center my-2">
+          <Row className="justify-content-left my-2">
             <Col md={12}>
-              <h1 className="text-center text-danager">Loading...</h1>
+              <h3 className="text-left text-danager">Click a button below to get data.</h3>
               <div>
                 <Button onClick={this.handleFilmsLoad} variant="outline-secondary" size="sm">Get Films!</Button>
+                {' '}  {' '}
                 <Button onClick={this.handlePeopleLoad} variant="outline-secondary" size="sm">Get People!</Button>
+                <div>{<br />} </div>
               </div>
             </Col>
           </Row>

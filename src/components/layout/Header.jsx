@@ -1,28 +1,29 @@
 import React from 'react'
-import logo from './logo-sm.png';
+import logo from './logo_small_v2.png';
 
 
 
 function Header() {
     return (
         <header style={headerStyle}>
-            <p align="left">
+            <p align="center">
                 <img src={logo} className="App-logo" alt="logo" />
             </p>
 
-
-
         </header>
+
+
+
 
     )
 }
 
 
 let headerStyle = {
-    background: 'pink',
-    color: 'black',
-    padding: '5px',
-    margin: '5px'
+    background: '#DCDCDC',
+    padding: '20px',
+    margin: '15px',
+    border: '15px solid'
 
 }
 
