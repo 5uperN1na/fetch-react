@@ -11,7 +11,7 @@ function Header(props) {
                     <img src={logo} className="App-logo" alt="logo" />
                 </p>
 
-                <h3 className="text-center text-danger">Studio Ghibli Wiki!</h3>
+                <h3 className="text-center">Studio Ghibli Wiki!</h3>
 
 
                 <Button onClick={props.pizza} variant="outline-secondary" size="sm">Get Films!</Button>
