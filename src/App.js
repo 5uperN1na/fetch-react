@@ -5,7 +5,7 @@ import 'es6-promise';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+//import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -84,19 +84,20 @@ class App extends Component {
     if (this.state.isFilmsLoaded && !this.state.isPeopleLoaded) {
       return (
         <Fragment>
-        <Header />
+        <Header pizza={this.handleFilmsLoad} apple={this.handlePeopleLoad} />
         <Container>
        
 
           <Row className="justify-content-left my-2">
             <Col md={12}>
               <h1 className="text-center text-danger">Films</h1>
-              <div>
+              {/* <div>
             
                 <Button onClick={this.handleFilmsLoad} variant="outline-secondary" size="sm">Get Films!</Button>
                 {' '}  {' '}
                 <Button onClick={this.handlePeopleLoad} variant="outline-secondary" size="sm">Get People!</Button>
-              </div>
+              </div> */}
+
               <div>{<br />} </div>
 
 
@@ -123,19 +124,19 @@ class App extends Component {
     } else if (!this.state.isFilmsLoaded && this.state.isPeopleLoaded) {
       return (
         <Fragment>
-        <Header /> 
+        <Header pizza={this.handleFilmsLoad} apple={this.handlePeopleLoad} /> 
         <Container>
           <Row className="justify-content-left my-2">
             <Col md={12}>
-            <h1 className="text-center text-danger">Films</h1>
+            <h1 className="text-center text-danger">People</h1>
 
-            <div>
+            {/* <div>
             
             <Button onClick={this.handleFilmsLoad} variant="outline-secondary" size="sm">Get Films!</Button>
             {' '}  {' '}
             <Button onClick={this.handlePeopleLoad} variant="outline-secondary" size="sm">Get People!</Button>
           </div>
-          <div>{<br />} </div>
+          <div>{<br />} </div> */}
             
 
 
@@ -161,17 +162,19 @@ class App extends Component {
     } else {
       return (
          <Fragment>
-         <Header />
+         <Header pizza={this.handleFilmsLoad} apple={this.handlePeopleLoad}/>
         <Container>
           <Row className="justify-content-left my-2">
             <Col md={12}>
-              <h3 className="text-left text-danager">Click a button below to get data.</h3>
-              <div>
+              {/* <h4 className="text-left text-danager">Click a button below to get data.</h4> */}
+              {/* <div>
                 <Button onClick={this.handleFilmsLoad} variant="outline-secondary" size="sm">Get Films!</Button>
                 {' '}  {' '}
                 <Button onClick={this.handlePeopleLoad} variant="outline-secondary" size="sm">Get People!</Button>
                 <div>{<br />} </div>
-              </div>
+                </div> */}
+            
+            
             </Col>
           </Row>
         </Container>
